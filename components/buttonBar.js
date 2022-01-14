@@ -1,7 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {View, Button, StyleSheet} from 'react-native';
+import {useAnimation} from '../context/animations';
 
-const ButtonBar = ({move}) => {
+const ButtonBar = () => {
+  const {move} = useAnimation();
+
   return (
     <View style={styles.view}>
       <Button title={'1'} style={styles.button} onPress={() => move()} />

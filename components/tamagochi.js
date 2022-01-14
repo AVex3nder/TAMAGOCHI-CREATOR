@@ -1,17 +1,11 @@
 import React, {useRef} from 'react';
 import {ImageBackground, StyleSheet, View, Image, Animated} from 'react-native';
 import {tamagochiPaths, wH, wW} from '../configs/configs';
+import {useAnimation} from '../context/animations';
 
-const Tamagochi = ({userTamagochi, moveAnim}) => {
+const Tamagochi = ({userTamagochi}) => {
   const spritePath = tamagochiPaths[userTamagochi];
-
-  // const moveAnim = useRef(new Animated.Value(570)).current;
-  // const move = () => {
-  //   Animated.timing(570, {
-  //     toValue: -30,
-  //     duration: 3000,
-  //   }).start();
-  // };
+  const {moveAnim} = useAnimation();
 
   return (
     <View style={styles.view}>

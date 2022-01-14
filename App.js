@@ -9,33 +9,29 @@
 import React, {useState, useRef} from 'react';
 import {Button, View, Animated} from 'react-native';
 import GameScreen from './components/gameScreen';
-import Form from './components/form';
+import Form from './components/selectionForm';
 import ButtonBar from './components/buttonBar';
+import {AnimationProvider} from './context/animations';
 
 const App = () => {
   const [userBackground, setUserBackground] = useState('mountain');
   const [userTamagochi, setUserTamagochi] = useState('monkey');
 
-  const moveAnim = useRef(new Animated.Value(570)).current;
-  const move = () => {
-    Animated.timing(moveAnim, {
-      toValue: -30,
-      duration: 3000,
-    }).start();
-  };
-
   return (
     <>
       <View>
         <GameScreen
-          moveAnim={moveAnim}
           userBackground={userBackground}
           userTamagochi={userTamagochi}
         />
       </View>
-      <ButtonBar move={move} />
+      <ButtonBar />
     </>
   );
 };
 
-export default App;
+export default () => (
+  <AnimationProvider>
+    <App />
+  </AnimationProvider>
+);
