@@ -1,21 +1,16 @@
-import React, {useState, useEffect} from 'react';
-import {Text, View, StyleSheet, Image, Dimensions} from 'react-native';
-import {backgroundPaths, wH, vW} from '../configs/configs';
+import React from 'react';
+import {View, Image} from 'react-native';
+import {useContext} from '../context/context';
 
 const Background = ({userBackground}) => {
+  const {backgroundPaths, wH} = useContext();
   const bgPath = backgroundPaths[userBackground];
 
   return (
     <View>
-      <Image style={styles.background} source={bgPath} />
+      <Image style={{height: 0.7 * wH}} source={bgPath} />
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  background: {
-    height: 0.7 * wH,
-  },
-});
 
 export default Background;

@@ -1,26 +1,44 @@
 import React from 'react';
-import {View, Button, StyleSheet} from 'react-native';
-import {useAnimation} from '../context/animations';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
+import {useContext} from '../context/context';
 
 const ButtonBar = () => {
-  const {move} = useAnimation();
+  const {move, wW} = useContext();
 
   return (
     <View style={styles.view}>
-      <Button title={'1'} style={styles.button} onPress={() => move()} />
-      <Button title={'2'} style={styles.button} />
-      <Button title={'3'} style={styles.button} />
+      <TouchableOpacity
+        style={styles.button}
+        // onPress={() => move()}
+        disabled={false}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        // onPress={() => move()}
+        disabled={false}
+      />
+      <TouchableOpacity
+        style={styles.button}
+        // onPress={() => move()}
+        disabled={false}
+      />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   view: {
+    marginLeft: '5%',
+    padding: 5,
+    width: '90%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    justifyContent: 'space-between',
   },
   button: {
-    borderRadius: 20,
+    width: 80,
+    height: 80,
+    borderRadius: 40,
+    backgroundColor: '#28f2a3',
   },
 });
 

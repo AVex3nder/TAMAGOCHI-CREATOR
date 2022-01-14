@@ -11,7 +11,7 @@ import {Button, View, Animated} from 'react-native';
 import GameScreen from './components/gameScreen';
 import Form from './components/selectionForm';
 import ButtonBar from './components/buttonBar';
-import {AnimationProvider} from './context/animations';
+import {ContextProvider} from './context/context';
 
 const App = () => {
   const [userBackground, setUserBackground] = useState('mountain');
@@ -19,6 +19,7 @@ const App = () => {
 
   return (
     <>
+      <View title={'placeholder for navbar'} style={{height: '10%'}} />
       <View>
         <GameScreen
           userBackground={userBackground}
@@ -31,7 +32,7 @@ const App = () => {
 };
 
 export default () => (
-  <AnimationProvider>
+  <ContextProvider>
     <App />
-  </AnimationProvider>
+  </ContextProvider>
 );
