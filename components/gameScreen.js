@@ -3,27 +3,28 @@ import {View, Text, StyleSheet} from 'react-native';
 import Tamagochi from './tamagochi';
 import Background from './background';
 import {useContext} from '../context/context';
+import {TICK_RATE} from '../helpers/constants';
 
 const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
-  const {dance, idle, gameState, TICK_RATE} = useContext();
+  const {animation, gameState} = useContext();
   const [date, setDate] = useState(new Date());
 
   useEffect(() => {
-    let timerID = setInterval(() => tick(), TICK_RATE);
+    const timerID = setInterval(() => gameTick(), TICK_RATE);
     return function cleanup() {
       clearInterval(timerID);
     };
   });
 
-  function tick() {
+  function gameTick() {
     setDate(new Date());
 
     switch (gameState) {
       case 'IDLING':
-        idle();
+        animation.idle();
         break;
       case 'DANCING':
-        dance();
+        animation.dance();
     }
   }
 

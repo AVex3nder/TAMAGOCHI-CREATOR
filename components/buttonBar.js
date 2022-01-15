@@ -3,13 +3,13 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {useContext} from '../context/context';
 
 const ButtonBar = () => {
-  const {toggleDance} = useContext();
+  const {handler} = useContext();
 
   return (
     <View style={styles.view}>
       <TouchableOpacity
         style={styles.button}
-        onPress={() => toggleDance()}
+        onPress={() => handler.toggleDance()}
         disabled={false}
       />
       <TouchableOpacity

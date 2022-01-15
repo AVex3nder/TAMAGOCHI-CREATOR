@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Image} from 'react-native';
+import {backgroundPaths, wH} from '../helpers/constants';
 import {useContext} from '../context/context';
 
-const Background = ({userBackground}) => {
-  const {backgroundPaths, wH} = useContext();
+const Background = () => {
+  const {userBackground} = useContext();
   const bgPath = backgroundPaths[userBackground];
 
   return (
