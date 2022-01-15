@@ -5,7 +5,27 @@ import Background from './background';
 import {useContext} from '../context/context';
 
 const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
-  const {wH} = useContext();
+  const {dance, idle, gameState, TICK_RATE} = useContext();
+  const [date, setDate] = useState(new Date());
+
+  useEffect(() => {
+    let timerID = setInterval(() => tick(), TICK_RATE);
+    return function cleanup() {
+      clearInterval(timerID);
+    };
+  });
+
+  function tick() {
+    setDate(new Date());
+
+    switch (gameState) {
+      case 'IDLING':
+        idle();
+        break;
+      case 'DANCING':
+        dance();
+    }
+  }
 
   return (
     <View style={styles.view}>

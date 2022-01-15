@@ -15,16 +15,12 @@ import {ContextProvider} from './context/context';
 
 const App = () => {
   const [userBackground, setUserBackground] = useState('mountain');
-  const [userTamagochi, setUserTamagochi] = useState('monkey');
 
   return (
     <>
       <View title={'placeholder for navbar'} style={{height: '10%'}} />
       <View>
-        <GameScreen
-          userBackground={userBackground}
-          userTamagochi={userTamagochi}
-        />
+        <GameScreen userBackground={userBackground} />
       </View>
       <ButtonBar />
     </>

@@ -3,13 +3,13 @@ import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {useContext} from '../context/context';
 
 const ButtonBar = () => {
-  const {move, wW} = useContext();
+  const {toggleDance} = useContext();
 
   return (
     <View style={styles.view}>
       <TouchableOpacity
         style={styles.button}
-        // onPress={() => move()}
+        onPress={() => toggleDance()}
         disabled={false}
       />
       <TouchableOpacity
@@ -37,6 +37,7 @@ const styles = StyleSheet.create({
   button: {
     width: 80,
     height: 80,
+    borderWidth: 5,
     borderRadius: 40,
     backgroundColor: '#28f2a3',
   },
