@@ -6,8 +6,7 @@ import {useContext} from '../context/context';
 import {TICK_RATE} from '../helpers/constants';
 
 const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
-  const {animation, gameState} = useContext();
-  const [date, setDate] = useState(new Date());
+  const {gameState, setGameState, tamagochiGets, animation} = useContext();
 
   useEffect(() => {
     const timerID = setInterval(() => gameTick(), TICK_RATE);
@@ -17,19 +16,50 @@ const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
   });
 
   function gameTick() {
-    setDate(new Date());
+    setGameState(previous => {
+      return {...previous, clock: gameState.clock + 1};
+    });
 
-    switch (gameState) {
+    switch (gameState.current) {
       case 'IDLING':
         animation.idle();
         break;
-      case 'DANCING':
-        animation.dance();
+      case 'HUNGRY':
+        animation.hunger();
     }
+
+    if (gameState.dieTime === gameState.clock) {
+      tamagochiGets.newDieToken();
+    }
+
+    if (gameState.hungryTime === gameState.clock) {
+      tamagochiGets.hungry();
+    }
+
+    // switch (gameState.current) {
+    //   case 'IDLING':
+    //     animation.idle();
+    //     getHungry();
+    //     break;
+    //   case 'HUNGRY':
+    //     animation.hungry();
+    //     deathCount();
+    //     break;
+    //   case 'POOPY':
+    //     animation.poop();
+    //     deathCount();
+    //     break;
+    //   case 'DANCING':
+    //     animation.dance();
+    //     break;
+    //   default:
+    //     animation.idle();
+    // }
   }
 
   return (
     <View style={styles.view}>
+      <Text>{gameState.clock} </Text>
       <Background userBackground={userBackground} />
       <Tamagochi userTamagochi={userTamagochi} moveAnim={moveAnim} />
     </View>

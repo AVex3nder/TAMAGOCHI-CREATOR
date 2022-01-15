@@ -2,6 +2,12 @@ import {Dimensions} from 'react-native';
 
 // game constants:
 const TICK_RATE = 1000;
+const CHARACTERS = ['monkey', 'ninja'];
+const BACKGROUNDS = ['beach', 'mountain'];
+
+const getNextHungerTime = clock => Math.floor(Math.random() * 10) + 10 + clock;
+const getNextPoopTime = clock => Math.floor(Math.random() * 3) + 3 + clock;
+const getNextDieTime = clock => Math.floor(Math.random() * 5) + 5 + clock;
 
 // components constants:
 const backgroundPaths = {
@@ -17,4 +23,13 @@ const tamagochiPaths = {
 const wW = Dimensions.get('window').width;
 const wH = Dimensions.get('window').height;
 
-module.exports = {TICK_RATE, backgroundPaths, tamagochiPaths, wW, wH};
+module.exports = {
+  TICK_RATE,
+  getNextHungerTime,
+  getNextPoopTime,
+  getNextDieTime,
+  backgroundPaths,
+  tamagochiPaths,
+  wW,
+  wH,
+};

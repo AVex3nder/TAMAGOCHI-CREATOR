@@ -46,12 +46,12 @@ const Tamagochi = () => {
           style={[styles.sprite, spritePositions.eyes]}
         />
       </View>
-      <View style={[styles.view, styles.parts.detail]}>
+      {/* <View style={[styles.view, styles.parts.detail]}>
         <Image
           source={spritePath}
           style={[styles.sprite, spritePositions.detail]}
         />
-      </View>
+      </View> */}
     </>
   );
 };

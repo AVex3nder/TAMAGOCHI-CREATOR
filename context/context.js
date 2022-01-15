@@ -1,18 +1,30 @@
 import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
+import {
+  getNextHungerTime,
+  getNextPoopTime,
+  getNextDieTime,
+} from '../helpers/constants';
 
 const Context = React.createContext();
 
 export function ContextProvider(props) {
   // DYNAMIC GLOBALS:
   // game states:
-  const [gameState, setGameState] = useState('IDLING');
+  const [gameState, setGameState] = useState({
+    current: 'IDLING',
+    clock: 1,
+    hungryTime: 5,
+    poopTime: -1,
+    dieTokenTime: -1,
+    dieTokens: [],
+  });
 
   // user selected tamagochi:
   const [userTamagochi, setUserTamagochi] = useState('monkey');
 
   // user selected background
-  const [userBackground, setUserBackground] = useState('mountain');
+  const [userBackground, setUserBackground] = useState('beach');
 
   // sprite positioning states for animations:
   const [spriteState, setSpriteState] = useState({
@@ -21,6 +33,31 @@ export function ContextProvider(props) {
     eyesLeft: 570,
     detailLeft: 570,
   });
+
+  // game state handlers:
+  const tamagochiGets = {
+    idling: () => {
+      setGameState(previous => {
+        return {...previous, current: 'IDLING'};
+      });
+    },
+    hungry: () => {
+      setGameState(previous => {
+        return {...previous, current: 'HUNGRY'};
+      });
+      getNextDieTime();
+    },
+    newDieToken: () => {
+      setGameState(previous => {
+        return {...previous, dieTokens: gameState.dieTokens.push('dieToken')};
+      });
+      if (gameState.dieTokens.length >= 4) {
+        setGameState(previous => {
+          return {...previous, current: 'DEAD'};
+        });
+      }
+    },
+  };
 
   // sprite animations:
   const animation = {
@@ -55,7 +92,7 @@ export function ContextProvider(props) {
       }
     },
 
-    dance: () => {
+    hunger: () => {
       switch (spriteState.headLeft) {
         case 382:
           setSpriteState({
@@ -106,6 +143,7 @@ export function ContextProvider(props) {
     gameState,
     setGameState,
     animation,
+    tamagochiGets,
     handler,
   };
 
