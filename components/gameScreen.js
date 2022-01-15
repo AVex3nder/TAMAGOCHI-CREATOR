@@ -9,12 +9,13 @@ const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
   const {gameState, setGameState, tamagochiGets, animation} = useContext();
 
   useEffect(() => {
-    const timerID = setInterval(() => gameTick(), TICK_RATE);
+    const timerID = setInterval(() => gameTick(), TICK_RATE); // create a timer for the game
     return function cleanup() {
       clearInterval(timerID);
     };
   });
 
+  // function gameTick() holds the game loop logic:
   function gameTick() {
     setGameState(previous => {
       return {...previous, clock: gameState.clock + 1};
@@ -39,7 +40,9 @@ const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
 
   return (
     <View style={styles.view}>
-      {/* <Text>{gameState.clock} </Text> */}
+      <Text>
+        {gameState.dieTime} / {gameState.dieTokens.length}
+      </Text>
       <Background userBackground={userBackground} />
       <Tamagochi userTamagochi={userTamagochi} moveAnim={moveAnim} />
     </View>

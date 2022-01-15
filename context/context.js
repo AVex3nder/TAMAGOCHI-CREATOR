@@ -16,7 +16,7 @@ export function ContextProvider(props) {
     clock: 1,
     hungryTime: 5,
     poopTime: -1,
-    dieTokenTime: -1,
+    dieTime: -1,
     dieTokens: [],
   });
 
@@ -43,17 +43,25 @@ export function ContextProvider(props) {
     },
     hungry: () => {
       setGameState(previous => {
-        return {...previous, current: 'HUNGRY'};
+        return {
+          ...previous,
+          current: 'HUNGRY',
+          dieTime: getNextDieTime(gameState.clock),
+        };
       });
-      getNextDieTime();
     },
     newDieToken: () => {
-      setGameState(previous => {
-        return {...previous, dieTokens: gameState.dieTokens.push('dieToken')};
-      });
       if (gameState.dieTokens.length >= 4) {
         setGameState(previous => {
           return {...previous, current: 'DEAD'};
+        });
+      } else {
+        setGameState(previous => {
+          return {
+            ...previous,
+            dieTime: getNextDieTime(gameState.clock),
+            dieTokens: [...gameState.dieTokens, 'dieToken'],
+          };
         });
       }
     },
