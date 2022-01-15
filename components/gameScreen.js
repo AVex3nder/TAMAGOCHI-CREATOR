@@ -35,31 +35,11 @@ const GameScreen = ({userBackground, userTamagochi, moveAnim}) => {
     if (gameState.hungryTime === gameState.clock) {
       tamagochiGets.hungry();
     }
-
-    // switch (gameState.current) {
-    //   case 'IDLING':
-    //     animation.idle();
-    //     getHungry();
-    //     break;
-    //   case 'HUNGRY':
-    //     animation.hungry();
-    //     deathCount();
-    //     break;
-    //   case 'POOPY':
-    //     animation.poop();
-    //     deathCount();
-    //     break;
-    //   case 'DANCING':
-    //     animation.dance();
-    //     break;
-    //   default:
-    //     animation.idle();
-    // }
   }
 
   return (
     <View style={styles.view}>
-      <Text>{gameState.clock} </Text>
+      {/* <Text>{gameState.clock} </Text> */}
       <Background userBackground={userBackground} />
       <Tamagochi userTamagochi={userTamagochi} moveAnim={moveAnim} />
     </View>
