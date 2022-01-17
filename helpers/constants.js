@@ -20,6 +20,11 @@ const tamagochiPaths = {
   ninja: require('../sprites/tamagochi/ninja.png'),
 };
 
+const appIconPaths = {
+  monkey: require('../sprites/tamagochi/monkey_icon.png'),
+  ninja: require('../sprites/tamagochi/ninja_icon.png'),
+};
+
 const wW = Dimensions.get('window').width;
 const wH = Dimensions.get('window').height;
 
@@ -30,6 +35,7 @@ module.exports = {
   getNextDieTime,
   backgroundPaths,
   tamagochiPaths,
+  appIconPaths,
   wW,
   wH,
 };

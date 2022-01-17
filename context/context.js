@@ -12,6 +12,7 @@ export function ContextProvider(props) {
   // DYNAMIC GLOBALS:
   // game states:
   const [gameState, setGameState] = useState({
+    play: false,
     current: 'IDLING',
     clock: 1,
     hungryTime: 5,
@@ -21,7 +22,7 @@ export function ContextProvider(props) {
   });
 
   // user selected tamagochi:
-  const [userTamagochi, setUserTamagochi] = useState('monkey');
+  const [userTamagochi, setUserTamagochi] = useState(null);
 
   // user selected background
   const [userBackground, setUserBackground] = useState('beach');
@@ -34,7 +35,31 @@ export function ContextProvider(props) {
     detailLeft: 570,
   });
 
-  // game state handlers:
+  // GAME STATE HANDLERS:
+  // function gameTick() holds the game loop logic:
+  const gameTick = () => {
+    setGameState(previous => {
+      return {...previous, clock: gameState.clock + 1};
+    });
+
+    switch (gameState.current) {
+      case 'IDLING':
+        animation.idle();
+        break;
+      case 'HUNGRY':
+        animation.hunger();
+    }
+
+    if (gameState.dieTime === gameState.clock) {
+      tamagochiGets.newDieToken();
+    }
+
+    if (gameState.hungryTime === gameState.clock) {
+      tamagochiGets.hungry();
+    }
+  };
+
+  // tamagochiGets handles the game state changes:
   const tamagochiGets = {
     idling: () => {
       setGameState(previous => {
@@ -130,14 +155,28 @@ export function ContextProvider(props) {
   };
 
   // button handlers:
-  const handler = {
-    toggleDance: () => {
-      if (gameState === 'IDLING') {
-        setGameState('DANCING');
+  const togglePlay = () => {
+    setGameState(previous => {
+      if (!gameState.play) {
+        return {...previous, play: true};
       } else {
-        setGameState('IDLING');
+        return {...previous, play: false};
       }
-    },
+    });
+  };
+
+  const handleFeed = () => {
+    gameState.current === 'HUNGRY' &&
+      setGameState(previous => {
+        return {...previous, current: 'POOPY'};
+      });
+  };
+
+  const handlePoop = () => {
+    gameState.current === 'POOPY' &&
+      setGameState(previous => {
+        return {...previous, current: 'IDLING'};
+      });
   };
 
   // context prop value:
@@ -152,7 +191,10 @@ export function ContextProvider(props) {
     setGameState,
     animation,
     tamagochiGets,
-    handler,
+    gameTick,
+    togglePlay,
+    handleFeed,
+    handlePoop,
   };
 
   return <Context.Provider value={value} {...props} />;

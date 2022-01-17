@@ -1,7 +1,7 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
-import {useContext} from '../context/context';
-import {tamagochiPaths} from '../helpers/constants';
+import {useContext} from '../../context/context';
+import {tamagochiPaths} from '../../helpers/constants';
 
 const Tamagochi = () => {
   const {userTamagochi, spriteState} = useContext();
