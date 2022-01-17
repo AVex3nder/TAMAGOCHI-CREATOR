@@ -4,6 +4,8 @@ import {
   getNextHungerTime,
   getNextPoopTime,
   getNextDieTime,
+  CHARACTERS,
+  BACKGROUNDS,
 } from '../helpers/constants';
 
 const Context = React.createContext();
@@ -25,7 +27,7 @@ export function ContextProvider(props) {
   const [userTamagochi, setUserTamagochi] = useState(null);
 
   // user selected background
-  const [userBackground, setUserBackground] = useState('beach');
+  const [userBackground, setUserBackground] = useState(null);
 
   // sprite positioning states for animations:
   const [spriteState, setSpriteState] = useState({

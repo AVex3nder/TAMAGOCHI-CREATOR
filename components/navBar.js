@@ -1,17 +1,18 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, Image, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import {appIconPaths} from '../helpers/constants';
 import {useContext} from '../context/context';
 
-const NavBar = () => {
+const NavBar = ({navigation}) => {
   const {userTamagochi} = useContext();
-
   return (
     <View style={styles.navbar}>
       {userTamagochi && (
-        <TouchableOpacity style={styles.iconContainer}>
+        <Pressable
+          style={styles.iconContainer}
+          onPressOut={() => navigation.navigate('Form')}>
           <Image source={appIconPaths[userTamagochi]} />
-        </TouchableOpacity>
+        </Pressable>
       )}
       <Text style={styles.title}>TAMAGOCHI CREATOR</Text>
     </View>
@@ -26,9 +27,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   title: {
-    fontSize: 25,
+    fontSize: 20,
     fontWeight: '500',
-    color: 'white',
+    color: 'black',
     alignSelf: 'center',
     marginLeft: '2%',
   },

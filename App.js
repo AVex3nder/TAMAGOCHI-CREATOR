@@ -8,7 +8,6 @@
 
 import React from 'react';
 import GameMain from './components/gameMain';
-import NavBar from './components/navBar';
 import SelectionForm from './components/selectionForm';
 import {ContextProvider} from './context/context';
 import {NavigationContainer} from '@react-navigation/native';
@@ -20,10 +19,18 @@ const App = () => {
   return (
     <>
       <NavigationContainer>
-        <NavBar />
         <Stack.Navigator initialRouteName="Form">
-          <Stack.Screen name="Form" component={SelectionForm} />
-          <Stack.Screen name="Game" component={GameMain} />
+          <Stack.Screen
+            name="Form"
+            component={SelectionForm}
+            options={{
+              headerTitle: 'TAMAGOCHI CREATOR',
+            }}
+          />
+          <Stack.Screen
+            name="Game"
+            component={GameMain}
+            options={{headerShown: false}}></Stack.Screen>
         </Stack.Navigator>
       </NavigationContainer>
     </>
