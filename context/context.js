@@ -29,6 +29,8 @@ export function ContextProvider(props) {
   // user selected background
   const [userBackground, setUserBackground] = useState(null);
 
+  const [selected, setSelected] = useState(null);
+
   // sprite positioning states for animations:
   const [spriteState, setSpriteState] = useState({
     bodyLeft: 570,
@@ -187,6 +189,8 @@ export function ContextProvider(props) {
     setUserTamagochi,
     userBackground,
     setUserBackground,
+    selected,
+    setSelected,
     spriteState,
     setSpriteState,
     gameState,
