@@ -11,6 +11,7 @@ const Tamagochi = () => {
   const spritePositions = StyleSheet.create({
     body: {
       left: spriteState.bodyLeft,
+      top: spriteState.bodyTop,
     },
     head: {
       left: spriteState.headLeft,
@@ -19,10 +20,6 @@ const Tamagochi = () => {
     eyes: {
       left: spriteState.eyesLeft,
       top: 130,
-    },
-    detail: {
-      left: spriteState.detailLeft,
-      top: -230,
     },
   });
 
@@ -46,12 +43,6 @@ const Tamagochi = () => {
           style={[styles.sprite, spritePositions.eyes]}
         />
       </View>
-      {/* <View style={[styles.view, styles.parts.detail]}>
-        <Image
-          source={spritePath}
-          style={[styles.sprite, spritePositions.detail]}
-        />
-      </View> */}
     </>
   );
 };

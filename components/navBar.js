@@ -1,17 +1,22 @@
 import React from 'react';
 import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
-import {appIconPaths} from '../helpers/constants';
+import {ICON_PATHS} from '../helpers/constants';
 import {useContext} from '../context/context';
 
-const NavBar = ({navigation}) => {
-  const {userTamagochi} = useContext();
+const NavBar = ({navigation, showIcon}) => {
+  const {setGameState, userTamagochi} = useContext();
   return (
     <View style={styles.navbar}>
-      {userTamagochi && (
+      {showIcon && (
         <Pressable
           style={styles.iconContainer}
+          onPressIn={() =>
+            setGameState(previous => {
+              return {...previous, play: false};
+            })
+          }
           onPressOut={() => navigation.navigate('Form')}>
-          <Image source={appIconPaths[userTamagochi]} />
+          <Image source={ICON_PATHS[userTamagochi]} style={styles.icon} />
         </Pressable>
       )}
       <Text style={styles.title}>TAMAGOCHI CREATOR</Text>
@@ -21,20 +26,31 @@ const NavBar = ({navigation}) => {
 
 const styles = StyleSheet.create({
   navbar: {
-    height: '10%',
-    borderWidth: 2,
+    height: '8%',
+    marginTop: '1%',
     flexDirection: 'row',
     justifyContent: 'space-evenly',
   },
   title: {
-    fontSize: 20,
-    fontWeight: '500',
+    fontSize: 24,
+    fontWeight: '800',
     color: 'black',
+    textShadowOffset: {
+      width: -2,
+      height: 2,
+    },
+    textShadowRadius: 10,
+    textShadowColor: '#28f2a3',
     alignSelf: 'center',
-    marginLeft: '2%',
   },
   iconContainer: {
-    justifyContent: 'center',
+    height: 60,
+    overflow: 'hidden',
+    justifyContent: 'flex-start',
+  },
+  icon: {
+    height: 80,
+    alignSelf: 'center',
   },
 });
 

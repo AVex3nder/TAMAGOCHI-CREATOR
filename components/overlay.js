@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 
-const GameOverlay = () => {
+const Overlay = ({text}) => {
   return (
     <View style={styles.overlay}>
-      <Text style={styles.text}>PRESS THE MIDDLE BUTTON TO START GAME</Text>
+      <Text style={styles.text}>{text}</Text>
     </View>
   );
 };
@@ -20,8 +20,14 @@ const styles = StyleSheet.create({
     opacity: 0.5,
     backgroundColor: '#28f2a3',
     zIndex: 1,
+    justifyContent: 'center',
   },
-  text: {fontSize: 50, fontWeight: '700', color: 'black'},
+  text: {
+    fontSize: 40,
+    fontWeight: '700',
+    color: 'black',
+    alignSelf: 'center',
+  },
 });
 
-export default GameOverlay;
+export default Overlay;

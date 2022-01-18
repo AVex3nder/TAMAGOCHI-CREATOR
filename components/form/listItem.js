@@ -1,17 +1,21 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {Pressable, Image, Text, StyleSheet} from 'react-native';
-import GameOverlay from './game/gameOverlay';
-import {useContext} from '../context/context';
+import Overlay from '../overlay';
 
 const ListItem = ({handler, paths, item, selected, setSelected}) => {
   return (
     <Pressable
       style={styles.press}
       onPressOut={() => {
-        handler(item);
-        setSelected(item);
+        if (selected === item) {
+          handler(null);
+          setSelected(null);
+        } else {
+          handler(item);
+          setSelected(item);
+        }
       }}>
-      {selected === item && <GameOverlay />}
+      {selected === item && <Overlay text={'SELECTED'} />}
       <Image source={paths[item]} style={styles.image} />
       <Text style={styles.text}>{item}</Text>
     </Pressable>

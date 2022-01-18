@@ -7,8 +7,8 @@
  */
 
 import React from 'react';
-import GameMain from './components/gameMain';
-import SelectionForm from './components/selectionForm';
+import GameMain from './components/game/gameMain';
+import SelectionForm from './components/form/selectionForm';
 import {ContextProvider} from './context/context';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -23,14 +23,13 @@ const App = () => {
           <Stack.Screen
             name="Form"
             component={SelectionForm}
-            options={{
-              headerTitle: 'TAMAGOCHI CREATOR',
-            }}
+            options={{headerShown: false}}
           />
           <Stack.Screen
             name="Game"
             component={GameMain}
-            options={{headerShown: false}}></Stack.Screen>
+            options={{headerShown: false}}
+          />
         </Stack.Navigator>
       </NavigationContainer>
     </>

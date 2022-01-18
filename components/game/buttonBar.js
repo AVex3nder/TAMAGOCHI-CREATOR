@@ -19,9 +19,6 @@ const ButtonBar = () => {
       style={styles.icon}
     />
   );
-  // const pauseIcon = (
-  //   <Icon size={40} name={'pause'} color={'black'} style={styles.icon} />
-  // );
 
   return (
     <View style={styles.view}>
