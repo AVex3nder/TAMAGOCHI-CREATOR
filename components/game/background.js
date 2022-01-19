@@ -8,8 +8,8 @@ const Background = () => {
   const bgPath = PATHS[userBackground];
 
   return (
-    <View>
-      <Image style={{height: 0.7 * wH}} source={bgPath} />
+    <View style={{height: '78%'}}>
+      <Image style={{alignSelf: 'center', height: 600}} source={bgPath} />
     </View>
   );
 };

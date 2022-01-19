@@ -14,7 +14,7 @@ const GameScreen = () => {
   useEffect(() => {
     const timerID = setInterval(() => {
       if (gameState.play) {
-        gameTick();
+        gameTick(); // all the timer does is it calls this gameTick function periodically in a setInterval
       }
     }, TICK_RATE);
     if (!gameState.play && timerID) {
@@ -28,11 +28,11 @@ const GameScreen = () => {
   return (
     <View style={styles.view}>
       {/* activate this <Text> for monitoring the game states and debugging */}
-      <Text style={{color: 'black'}}>
+      {/* <Text style={{color: 'black'}}>
         {gameState.clock} /{gameState.current} /POOP:{gameState.poopTime}{' '}
         /HUNGER:{gameState.hungryTime} /DIETIME:{gameState.dieTime} /
         {gameState.dieTokens.length}
-      </Text>
+      </Text> */}
       {!gameState.play && (
         <Overlay text={'PRESS THE MIDDLE BUTTON TO START GAME'} />
       )}

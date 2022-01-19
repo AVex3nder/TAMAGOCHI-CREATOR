@@ -1,4 +1,3 @@
-import {StyleSheet} from 'react-native';
 import React, {useState} from 'react';
 import {
   getNextHungerTime,
@@ -24,8 +23,8 @@ export function ContextProvider(props) {
   });
 
   // user choice related states:
-  const [userTamagochi, setUserTamagochi] = useState('monkey');
-  const [userBackground, setUserBackground] = useState('beach');
+  const [userTamagochi, setUserTamagochi] = useState(null);
+  const [userBackground, setUserBackground] = useState(null);
 
   // sprite positioning states for animations:
   const [spriteState, setSpriteState] = useState({
@@ -50,6 +49,7 @@ export function ContextProvider(props) {
       return {...previous, clock: gameState.clock + 1};
     });
 
+    // this switch handles the animations
     switch (gameState.current) {
       case 'IDLING':
         animation.idle();
@@ -76,6 +76,7 @@ export function ContextProvider(props) {
         return;
     }
 
+    // game logic according to state
     if (gameState.dieTime === gameState.clock) {
       tamagochiGets.newDieToken();
     }
@@ -187,8 +188,8 @@ export function ContextProvider(props) {
             bodyTop: 0,
           });
           break;
+        // I set a default for when I return from other positions (other animations):
         default:
-          // I set a default for when I return from other positions (other animations):
           setSpriteState({
             eyesLeft: 465,
             headLeft: 382,
@@ -283,6 +284,7 @@ export function ContextProvider(props) {
 
   // button handlers:
   const togglePlay = () => {
+    // if game state is DEAD the game is over so it will reset for a new game:
     if (gameState.current === 'DEAD') {
       setGameState({
         play: true,
@@ -294,6 +296,7 @@ export function ContextProvider(props) {
         dieTokens: [],
       });
     } else {
+      // else it just pauses/plays
       setGameState(previous => {
         if (!gameState.play) {
           return {...previous, play: true};
