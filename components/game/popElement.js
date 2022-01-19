@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import {Image, StyleSheet} from 'react-native';
-import {useContext} from '../../context/context';
+import {useGameContext} from '../../context/game_context';
 
 const PopElement = ({element}) => {
-  const {gameState} = useContext();
+  const {gameState} = useGameContext();
+
   const [sprite, setSprite] = useState('a');
+
   const paths = {
     rip: {
       a: require('../../sprites/others/RIP.png'),

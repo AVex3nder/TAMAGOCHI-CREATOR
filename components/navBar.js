@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text, StyleSheet, Pressable, Image} from 'react-native';
 import {ICON_PATHS} from '../helpers/constants';
-import {useContext} from '../context/context';
+import {useSprite} from '../context/sprite_context';
+import {useGameContext} from '../context/game_context';
 
 const NavBar = ({navigation, showIcon}) => {
-  const {setGameState, userTamagochi} = useContext();
+  const {userTamagochi} = useSprite();
+  const {setGameState} = useGameContext();
   return (
     <View style={styles.navbar}>
       {showIcon && (

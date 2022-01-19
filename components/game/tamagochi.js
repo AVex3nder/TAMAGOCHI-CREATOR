@@ -1,10 +1,10 @@
 import React from 'react';
 import {StyleSheet, View, Image} from 'react-native';
-import {useContext} from '../../context/context';
 import {PATHS} from '../../helpers/constants';
+import {useSprite} from '../../context/sprite_context';
 
 const Tamagochi = () => {
-  const {userTamagochi, spriteState} = useContext();
+  const {userTamagochi, spriteState} = useSprite();
   const spritePath = PATHS[userTamagochi];
 
   // sprite positions, left prop is dynamic and comes from spriteState:

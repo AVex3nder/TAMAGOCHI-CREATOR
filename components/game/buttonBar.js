@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import {useContext} from '../../context/context';
+import {useGameContext} from '../../context/game_context';
 
 const ButtonBar = () => {
-  const {handleFeed, handlePoop, togglePlay, gameState} = useContext();
+  const {handleFeed, handlePoop, togglePlay, gameState} = useGameContext();
   const foodIcon = (
     <Icon size={40} name={'pizza-slice'} color={'black'} style={styles.icon} />
   );

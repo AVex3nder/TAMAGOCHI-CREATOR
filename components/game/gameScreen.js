@@ -4,11 +4,11 @@ import Tamagochi from './tamagochi';
 import PopElement from './popElement';
 import Background from './background';
 import Overlay from '../overlay';
-import {useContext} from '../../context/context';
 import {TICK_RATE} from '../../helpers/constants';
+import {useGameContext} from '../../context/game_context';
 
 const GameScreen = () => {
-  const {gameState, gameTick} = useContext();
+  const {gameState, gameTick} = useGameContext();
 
   // create timer for the game with condition to pause/play the timer
   useEffect(() => {

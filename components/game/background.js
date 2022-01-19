@@ -1,17 +1,27 @@
 import React from 'react';
-import {View, Image} from 'react-native';
-import {PATHS, wH} from '../../helpers/constants';
-import {useContext} from '../../context/context';
+import {View, Image, StyleSheet} from 'react-native';
+import {PATHS} from '../../helpers/constants';
+import {useSprite} from '../../context/sprite_context';
 
 const Background = () => {
-  const {userBackground} = useContext();
+  const {userBackground} = useSprite();
   const bgPath = PATHS[userBackground];
 
   return (
-    <View style={{height: '78%'}}>
-      <Image style={{alignSelf: 'center', height: 600}} source={bgPath} />
+    <View style={styles.view}>
+      <Image style={styles.image} source={bgPath} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  view: {
+    height: '78%',
+  },
+  image: {
+    alignSelf: 'center',
+    height: 600,
+  },
+});
 
 export default Background;

@@ -8,17 +8,14 @@ import {
   PATHS,
   ICON_PATHS,
 } from '../../helpers/constants';
-import {useContext} from '../../context/context';
+import {useSprite} from '../../context/sprite_context';
+import {useGameContext} from '../../context/game_context';
 
 const SelectionForm = ({navigation}) => {
   const [alert, setAlert] = useState(false);
-  const {
-    userTamagochi,
-    setUserTamagochi,
-    userBackground,
-    setUserBackground,
-    setGameState,
-  } = useContext();
+  const {userTamagochi, setUserTamagochi, userBackground, setUserBackground} =
+    useSprite();
+  const {setGameState} = useGameContext();
 
   useEffect(() => {
     setAlert(false);

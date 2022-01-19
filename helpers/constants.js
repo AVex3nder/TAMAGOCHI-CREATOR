@@ -14,8 +14,8 @@ const ICON_PATHS = {
 };
 
 // game loop times calculators:
-const getNextHungerTime = clock => Math.floor(Math.random() * 5) + 5 + clock;
-const getNextPoopTime = clock => Math.floor(Math.random() * 5) + 5 + clock;
+const getNextHungerTime = clock => Math.floor(Math.random() * 10) + 10 + clock;
+const getNextPoopTime = clock => Math.floor(Math.random() * 10) + 10 + clock;
 const getNextDieTime = clock => Math.floor(Math.random() * 5) + 5 + clock;
 
 module.exports = {
