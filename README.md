@@ -1,17 +1,31 @@
-# Codeworks code reviews
+# TAMAGOCHI CREATOR
 
-This repo is used to do code reviews for entire projects from students.
+This is a personal project to help me learn more about how to implement gamified features in apps.
 
 ## Getting started
 
-- Make sure you have a linter set up (e.g. [ESLint](https://eslint.org/)), otherwise please add one to your project and lint the code.
-- Check that you have a `.gitignore` file in your repo, otherwise copy the one you find in this repo and add it to your project as a starting point.
-- In case you have already forked this repo in the past, before continuing first delete your fork (any associated pull requests are not deleted, don’t worry).
+This project is built in <a href="https://reactnative.dev/" >React Native</a>.
+In order to run the build, you first need to <a href="https://reactnative.dev/docs/environment-setup">set up the development environment</a>.
+
+Once your system is all set up, follow these <a href="https://reactnative.dev/docs/running-on-device">steps</a>:
 
 ## How it works
 
-- Once your project is ready, fork this repo and clone the fork on your computer.
-- Copy all the code from your project to that clone (without overwriting its `.git` folder), and include any dotfiles (which are hidden files starting with a dot, typically used for configuration purposes).
-- Commit all your code and push it to your fork.
-- Send a pull request (feel free to add a comment to your PR, in case it’s useful for the reviewer).
-- You will receive a notification on GitHub once the code review is completed.
+The home screen is the selector form where you can choose a Sprite for the Tamagochi and a Background, out of the few pre-set ones.
+Once you made your choice, just tap the 'GO TO GAME!' button and the game begins!
+In the game, you have 3 buttons: first one is for food, middle one is play-pause, and right one is for picking up the poop.
+Try to make your Tamagochi survive!
+
+## Features still being developed
+
+Backend:
+
+- server and database
+- user CRUD and authentication
+- upload of own sprites and backgrounds
+
+Frontend:
+
+- login/register screen and user dashboard
+- more complex game cycle: sleep, disease...
+- game score and highscores
